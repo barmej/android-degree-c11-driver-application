@@ -13,7 +13,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.*;
@@ -33,7 +32,7 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps,container,true);
+        return inflater.inflate(R.layout.fragment_maps, container, true);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
-        if(mapFragment != null){
+        if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
     }
@@ -57,7 +56,7 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
                 == PackageManager.PERMISSION_GRANTED) {
             setupUserLocation();
         } else {
-            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION_PERMISSION);
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
         }
     }
 
@@ -68,9 +67,9 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
         locationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if(location != null){
-                    LatLng currentLatLng=new LatLng(location.getLatitude(),location.getLongitude());
-                    CameraUpdate update = CameraUpdateFactory.newLatLngZoom(currentLatLng,16f);
+                if (location != null) {
+                    LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    CameraUpdate update = CameraUpdateFactory.newLatLngZoom(currentLatLng, 16f);
                     mMap.moveCamera(update);
                 }
             }
@@ -79,61 +78,55 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == REQUEST_LOCATION_PERMISSION){
-            if(permissions.length == 1 & grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == REQUEST_LOCATION_PERMISSION) {
+            if (permissions.length == 1 & grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 setupUserLocation();
-            }else{
-                if(permissionFailListenr != null){
+            } else {
+                if (permissionFailListenr != null) {
                     permissionFailListenr.onPermissionFail();
                 }
             }
-        }else{
+        } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
     public void setPickUpMarker(LatLng pickup) {
-        if(mMap == null )return ;
+        if (mMap == null) return;
 
-        if(pickUpMarker == null){
+        if (pickUpMarker == null) {
             MarkerOptions options = new MarkerOptions();
             options.position(pickup);
             pickUpMarker = mMap.addMarker(options);
-        }else{
+        } else {
             pickUpMarker.setPosition(pickup);
         }
 
     }
-    public void setDestinationMarker(LatLng destination) {
-        if(mMap == null )return ;
 
-        if(destinationMarker == null){
+    public void setDestinationMarker(LatLng destination) {
+        if (mMap == null) return;
+
+        if (destinationMarker == null) {
             MarkerOptions options = new MarkerOptions();
             options.position(destination);
             destinationMarker = mMap.addMarker(options);
-        }else{
+        } else {
             destinationMarker.setPosition(destination);
         }
     }
 
-    public void updateDriverLocation( LatLng driverLatlng) {
-        if(driverMarker == null){
-            MarkerOptions options = new MarkerOptions();
-            options.position(driverLatlng);
-            driverMarker = mMap.addMarker(options);
-        }else{
-            driverMarker.setPosition(driverLatlng);
-        }
-    }
+
 
     public void reset() {
         mMap.clear();
-        pickUpMarker=null;
+        pickUpMarker = null;
         destinationMarker = null;
         driverMarker = null;
     }
-    public void setPermissionFailListenr(PermissionFailListenr permissionFailListenr){
-        this.permissionFailListenr= permissionFailListenr;
+
+    public void setPermissionFailListenr(PermissionFailListenr permissionFailListenr) {
+        this.permissionFailListenr = permissionFailListenr;
     }
 
 }

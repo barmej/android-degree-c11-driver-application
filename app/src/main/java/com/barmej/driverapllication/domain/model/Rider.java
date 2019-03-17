@@ -3,19 +3,12 @@ package com.barmej.driverapllication.domain.model;
 import java.io.Serializable;
 
 public class Rider implements Serializable {
-   public enum Status{
-        FREE,
-        REQUESTING_TRIP,
-        REQUEST_FAILED,
-        ON_TRIP,
-        ARRIVED
-
-    }
-    private String id ;
+    private String id;
     private String status;
     private String assignedTrip;
+    public Rider() {
+    }
 
-    public Rider(){}
     public Rider(String id) {
         this.id = id;
     }
@@ -42,5 +35,14 @@ public class Rider implements Serializable {
 
     public void setAssignedTrip(String assignedTrip) {
         this.assignedTrip = assignedTrip;
+    }
+
+    public enum Status {
+        FREE,
+        REQUESTING_TRIP,
+        REQUEST_FAILED,
+        ON_TRIP,
+        ARRIVED
+
     }
 }

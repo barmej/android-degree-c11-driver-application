@@ -2,9 +2,9 @@ package com.barmej.driverapllication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -26,7 +26,11 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBt;
 
     public static Intent getStartIntent(Context context) {
-        return new Intent(context,LoginActivity.class);
+        return new Intent(context, LoginActivity.class);
+    }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     @Override
@@ -36,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEt = findViewById(R.id.edit_text_password);
         emailEt = findViewById(R.id.edit_text_email);
         progressBar = findViewById(R.id.progress_bar);
-        loginBt= findViewById(R.id.button_login);
+        loginBt = findViewById(R.id.button_login);
         loginBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,22 +51,22 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginClicked() {
-        if(!isValidEmail(emailEt.getText())){
+        if (!isValidEmail(emailEt.getText())) {
             emailEt.setError(getString(R.string.invalid_email));
             return;
         }
-        if(passwordEt.getText().length()<6){
+        if (passwordEt.getText().length() < 6) {
             passwordEt.setError(getString(R.string.invalid_password_length));
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEt.getText().toString(),passwordEt.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEt.getText().toString(), passwordEt.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     String driverId = task.getResult().getUser().getUid();
                     fetchDriverProfileAndLogin(driverId);
-                }else {
+                } else {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_LONG).show();
                 }
@@ -71,24 +75,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void fetchDriverProfileAndLogin(String driverId) {
-        TripManager.getInstance().getDriverProfileAndMakeAvailableIfOffline(driverId,new CallBack(){
+        TripManager.getInstance().getDriverProfileAndMakeAvailableIfOffline(driverId, new CallBack() {
 
             @Override
             public void onComplete(boolean isSuccessful) {
-                if(isSuccessful){
+                if (isSuccessful) {
                     finish();
                     startActivity(HomeActivity.getStartIntent(LoginActivity.this));
-                }else {
+                } else {
                     Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
 
                 }
 
             }
-        } );
-    }
-
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+        });
     }
 }

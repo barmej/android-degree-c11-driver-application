@@ -3,11 +3,6 @@ package com.barmej.driverapllication.domain.model;
 import java.io.Serializable;
 
 public class Trip implements Serializable {
-    public enum Status{
-        GOING_TO_PICKUP,
-        GOING_TO_DESTINATION,
-        ARRIVED
-    }
     private String status;
     private String id;
     private String driverId;
@@ -18,10 +13,10 @@ public class Trip implements Serializable {
     private double destinationLat;
     private double currentLng;
     private double currentLat;
-
-    public Trip(){
+    public Trip() {
 
     }
+
     public String getStatus() {
         return status;
     }
@@ -100,5 +95,11 @@ public class Trip implements Serializable {
 
     public void setCurrentLat(double currentLat) {
         this.currentLat = currentLat;
+    }
+
+    public enum Status {
+        GOING_TO_PICKUP,
+        GOING_TO_DESTINATION,
+        ARRIVED
     }
 }

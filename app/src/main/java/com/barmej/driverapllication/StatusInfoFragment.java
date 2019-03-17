@@ -23,15 +23,15 @@ public class StatusInfoFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_status_info,container,false);
+        return inflater.inflate(R.layout.fragment_status_info, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         statusTv = view.findViewById(R.id.text_view_status);
-        arrivedToPickUpBt= view.findViewById(R.id.button_arrived_pickup);
-        arrivedToDestinationBt =view.findViewById(R.id.button_arrived_destination);
+        arrivedToPickUpBt = view.findViewById(R.id.button_arrived_pickup);
+        arrivedToDestinationBt = view.findViewById(R.id.button_arrived_destination);
         logOutBt = view.findViewById(R.id.button_logout);
         logOutBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,23 +54,23 @@ public class StatusInfoFragment extends Fragment {
     }
 
 
-    void setDriverActionDelegates(DriverActionsDeltagates delegates){
+    void setDriverActionDelegates(DriverActionsDeltagates delegates) {
         this.driverActionsDelegates = delegates;
     }
 
-    void updateWithStatus(FullStatus fullStatus){
+    void updateWithStatus(FullStatus fullStatus) {
         String driverStatus = fullStatus.getDriver().getStatus();
-        if(driverStatus.equals(Driver.Status.AVAILABLE.name())){
+        if (driverStatus.equals(Driver.Status.AVAILABLE.name())) {
             statusTv.setText(R.string.available);
             hideAllButtons();
             logOutBt.setVisibility(View.VISIBLE);
-        }else if (driverStatus.equals(Driver.Status.ON_TRIP.name())){
+        } else if (driverStatus.equals(Driver.Status.ON_TRIP.name())) {
             String tripStatus = fullStatus.getTrip().getStatus();
-            if(tripStatus.equals(Trip.Status.GOING_TO_PICKUP.name())){
+            if (tripStatus.equals(Trip.Status.GOING_TO_PICKUP.name())) {
                 statusTv.setText(R.string.going_pickup);
                 hideAllButtons();
                 arrivedToPickUpBt.setVisibility(View.VISIBLE);
-            }else if (tripStatus.equals(Trip.Status.GOING_TO_DESTINATION.name())){
+            } else if (tripStatus.equals(Trip.Status.GOING_TO_DESTINATION.name())) {
                 statusTv.setText(R.string.going_destination);
                 hideAllButtons();
                 arrivedToDestinationBt.setVisibility(View.VISIBLE);

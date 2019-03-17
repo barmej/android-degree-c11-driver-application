@@ -3,18 +3,14 @@ package com.barmej.driverapllication.domain.model;
 import java.io.Serializable;
 
 public class Driver implements Serializable {
-    public enum Status{
-        OFFLINE,
-        AVAILABLE,
-        ON_TRIP
-    }
-
-    private String id ;
-    private String name ;
+    private String id;
+    private String name;
     private int plateNumber;
     private String status;
     private String assignedTrip;
-    public Driver(){}
+    public Driver() {
+    }
+
     public String getId() {
         return id;
     }
@@ -53,5 +49,11 @@ public class Driver implements Serializable {
 
     public void setAssignedTrip(String assignedTrip) {
         this.assignedTrip = assignedTrip;
+    }
+
+    public enum Status {
+        OFFLINE,
+        AVAILABLE,
+        ON_TRIP
     }
 }

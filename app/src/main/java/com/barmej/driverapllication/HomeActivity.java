@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import com.barmej.driverapllication.domain.StatusCallback;
@@ -21,18 +20,14 @@ import com.google.android.gms.maps.model.LatLng;
 public class HomeActivity extends AppCompatActivity {
     private MapsContainerFragment mapsContainerFragment;
     private PermissionFailListenr permissionFailListenr = getPermissionFailListener();
-    private StatusCallback statusListener = getStatusListener();
-    private DriverActionsDeltagates driverActionsDeltagates = getDriverActionDelegates();
-
-
-
     private LocationCallback locationCallback;
     private FusedLocationProviderClient locationClient;
+    private DriverActionsDeltagates driverActionsDeltagates = getDriverActionDelegates();
     private StatusInfoFragment statusInfoFragment;
-
+    private StatusCallback statusListener = getStatusListener();
 
     public static Intent getStartIntent(Context context) {
-        return new Intent(context,HomeActivity.class);
+        return new Intent(context, HomeActivity.class);
     }
 
     @Override
@@ -62,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
     }
+
     private DriverActionsDeltagates getDriverActionDelegates() {
         return new DriverActionsDeltagates() {
             @Override
@@ -90,9 +86,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onUpdate(FullStatus status) {
                 String driverStatus = status.getDriver().getStatus();
-                if(driverStatus.equals(Driver.Status.AVAILABLE.name())){
+                if (driverStatus.equals(Driver.Status.AVAILABLE.name())) {
                     showAvailableScreen(status);
-                }else if (driverStatus.equals(Driver.Status.ON_TRIP.name())){
+                } else if (driverStatus.equals(Driver.Status.ON_TRIP.name())) {
                     showOnTripView(status);
                     trackAndSendLocationUpdates();
                 }
@@ -101,31 +97,32 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-
     @SuppressLint("MissingPermission")
     private void trackAndSendLocationUpdates() {
-        if(locationCallback == null){
+        if (locationCallback == null) {
             locationClient = LocationServices.getFusedLocationProviderClient(this);
-            locationCallback= new LocationCallback(){
+            locationCallback = new LocationCallback() {
                 @Override
                 public void onLocationResult(LocationResult locationResult) {
                     super.onLocationResult(locationResult);
                     Location lastLocation = locationResult.getLastLocation();
-                    TripManager.getInstance().updateCurrentLocation(lastLocation.getLatitude(),lastLocation.getLongitude());
+                    TripManager.getInstance().updateCurrentLocation(lastLocation.getLatitude(), lastLocation.getLongitude());
                 }
             };
-            locationClient.requestLocationUpdates(new LocationRequest(),locationCallback,null);
+            locationClient.requestLocationUpdates(new LocationRequest(), locationCallback, null);
         }
     }
+
     private void showAvailableScreen(FullStatus status) {
         mapsContainerFragment.reset();
         statusInfoFragment.updateWithStatus(status);
 
     }
+
     private void showOnTripView(FullStatus status) {
         Trip trip = status.getTrip();
-        mapsContainerFragment.setDestinationMarker(new LatLng(trip.getDestinationLat(),trip.getDestinationLng()));
-        mapsContainerFragment.setPickUpMarker(new LatLng(trip.getPickUpLat(),trip.getPickUpLng()));
+        mapsContainerFragment.setDestinationMarker(new LatLng(trip.getDestinationLat(), trip.getDestinationLng()));
+        mapsContainerFragment.setPickUpMarker(new LatLng(trip.getPickUpLat(), trip.getPickUpLng()));
         statusInfoFragment.updateWithStatus(status);
     }
 
@@ -144,7 +141,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void stopLocationUpdates() {
-        if(locationCallback != null && locationClient != null){
+        if (locationCallback != null && locationClient != null) {
             locationClient.removeLocationUpdates(locationCallback);
         }
     }

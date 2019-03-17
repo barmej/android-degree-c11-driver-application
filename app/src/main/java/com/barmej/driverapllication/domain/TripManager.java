@@ -9,7 +9,10 @@ import com.barmej.driverapllication.domain.model.FullStatus;
 import com.barmej.driverapllication.domain.model.Trip;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class TripManager {
 
@@ -50,13 +53,13 @@ public class TripManager {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 driver = dataSnapshot.getValue(Driver.class);
-                if(driver != null){
-                    if(driver.getStatus().equals(Driver.Status.OFFLINE.name())){
+                if (driver != null) {
+                    if (driver.getStatus().equals(Driver.Status.OFFLINE.name())) {
                         makeDriverAvailableAndNotify(callBack);
-                    }else {
+                    } else {
                         callBack.onComplete(true);
                     }
-                }else {
+                } else {
                     callBack.onComplete(false);
                 }
             }
@@ -80,18 +83,18 @@ public class TripManager {
 
     public void startListeningForStatus(StatusCallback statusCallback) {
         this.statusListener = statusCallback;
-       driverStatusListener = database.getReference(DRIVER_REF_PATH).child(driver.getId()).addValueEventListener(new ValueEventListener() {
+        driverStatusListener = database.getReference(DRIVER_REF_PATH).child(driver.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                driver= dataSnapshot.getValue(Driver.class);
-                if(driver != null ){
-                   if(driver.getStatus().equals(Driver.Status.ON_TRIP.name())&& !TextUtils.isEmpty(driver.getAssignedTrip())){
-                       getTripAndNotifyStatus();
-                   }else {
-                       FullStatus fullStatus = new FullStatus();
-                       fullStatus.setDriver(driver);
-                       notifyListener(fullStatus);
-                   }
+                driver = dataSnapshot.getValue(Driver.class);
+                if (driver != null) {
+                    if (driver.getStatus().equals(Driver.Status.ON_TRIP.name()) && !TextUtils.isEmpty(driver.getAssignedTrip())) {
+                        getTripAndNotifyStatus();
+                    } else {
+                        FullStatus fullStatus = new FullStatus();
+                        fullStatus.setDriver(driver);
+                        notifyListener(fullStatus);
+                    }
                 }
             }
 
@@ -108,8 +111,8 @@ public class TripManager {
         database.getReference(TRIP_REF_PATH).child(driver.getAssignedTrip()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                trip =dataSnapshot.getValue(Trip.class);
-                if(trip != null){
+                trip = dataSnapshot.getValue(Trip.class);
+                if (trip != null) {
                     FullStatus status = new FullStatus();
                     status.setDriver(driver);
                     status.setTrip(trip);
@@ -124,12 +127,14 @@ public class TripManager {
         });
 
     }
-    public void stopListeningToStatus(){
-        if(driverStatusListener != null ){
+
+    public void stopListeningToStatus() {
+        if (driverStatusListener != null) {
             database.getReference().child(driver.getId()).removeEventListener(driverStatusListener);
         }
         statusListener = null;
     }
+
     private void notifyListener(FullStatus fullStatus) {
         if (statusListener != null) {
             statusListener.onUpdate(fullStatus);
