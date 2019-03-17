@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:id="@+id/map_container_fragment"
+              tools:context=".HomeActivity"
+              android:name="com.barmej.driverapllication.MapsContainerFragment"/>
+    <fragment
+            android:id="@+id/fragment_status_info"
+            android:name="com.barmej.driverapllication.StatusInfoFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</RelativeLayout>
