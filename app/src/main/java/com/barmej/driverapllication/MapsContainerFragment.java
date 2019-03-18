@@ -16,9 +16,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.*;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.*;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MapsContainerFragment extends Fragment implements OnMapReadyCallback {
@@ -95,8 +93,9 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
         if (mMap == null) return;
 
         if (pickUpMarker == null) {
+            BitmapDescriptor descriptor = BitmapDescriptorFactory.fromResource(R.drawable.position);
             MarkerOptions options = new MarkerOptions();
-            options.position(pickup);
+            options.icon(descriptor);            options.position(pickup);
             pickUpMarker = mMap.addMarker(options);
         } else {
             pickUpMarker.setPosition(pickup);
@@ -108,8 +107,9 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
         if (mMap == null) return;
 
         if (destinationMarker == null) {
+            BitmapDescriptor descriptor = BitmapDescriptorFactory.fromResource(R.drawable.destination);
             MarkerOptions options = new MarkerOptions();
-            options.position(destination);
+            options.icon(descriptor);            options.position(destination);
             destinationMarker = mMap.addMarker(options);
         } else {
             destinationMarker.setPosition(destination);
