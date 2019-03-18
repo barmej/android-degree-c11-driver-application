@@ -143,6 +143,7 @@ public class HomeActivity extends AppCompatActivity {
     private void stopLocationUpdates() {
         if (locationCallback != null && locationClient != null) {
             locationClient.removeLocationUpdates(locationCallback);
+            locationCallback=null;
         }
     }
 }
