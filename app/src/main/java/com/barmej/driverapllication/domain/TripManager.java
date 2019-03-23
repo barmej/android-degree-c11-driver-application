@@ -16,7 +16,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TripManager {
 
-    private static final String USER_REF_PATH = "users";
     private static final String TRIP_REF_PATH = "trips";
     private static final String DRIVER_REF_PATH = "drivers";
 
