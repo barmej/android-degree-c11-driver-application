@@ -29,9 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         return new Intent(context, LoginActivity.class);
     }
 
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     private void fetchDriverProfileAndLogin(String driverId) {
