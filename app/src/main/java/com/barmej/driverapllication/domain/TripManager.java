@@ -98,8 +98,6 @@ public class TripManager {
 
             }
         });
-
-
     }
 
     private void getTripAndNotifyStatus() {
@@ -123,12 +121,7 @@ public class TripManager {
 
     }
 
-    public void stopListeningToStatus() {
-        if (driverStatusListener != null) {
-            database.getReference().child(driver.getId()).removeEventListener(driverStatusListener);
-        }
-        statusListener = null;
-    }
+
 
     private void notifyListener(FullStatus fullStatus) {
         if (statusListener != null) {
@@ -163,7 +156,12 @@ public class TripManager {
         fullStatus.setDriver(driver);
         notifyListener(fullStatus);
     }
-
+    public void stopListeningToStatus() {
+        if (driverStatusListener != null) {
+            database.getReference().child(driver.getId()).removeEventListener(driverStatusListener);
+        }
+        statusListener = null;
+    }
     public void goOffline() {
         driver.setStatus(Driver.Status.OFFLINE.name());
         driver.setAssignedTrip(null);

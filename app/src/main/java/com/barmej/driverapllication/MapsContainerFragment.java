@@ -24,7 +24,6 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
     private GoogleMap mMap;
     private Marker pickUpMarker;
     private Marker destinationMarker;
-    private Marker driverMarker;
     private PermissionFailListenr permissionFailListenr;
 
     @Nullable
@@ -93,7 +92,7 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
         if (mMap == null) return;
 
         if (pickUpMarker == null) {
-            BitmapDescriptor descriptor = BitmapDescriptorFactory.fromResource(R.drawable.position);
+            BitmapDescriptor descriptor = BitmapDescriptorFactory.fromResource(R.drawable.pick_up);
             MarkerOptions options = new MarkerOptions();
             options.icon(descriptor);            options.position(pickup);
             pickUpMarker = mMap.addMarker(options);
@@ -122,7 +121,6 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
         mMap.clear();
         pickUpMarker = null;
         destinationMarker = null;
-        driverMarker = null;
     }
 
     public void setPermissionFailListenr(PermissionFailListenr permissionFailListenr) {
