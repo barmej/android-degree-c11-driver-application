@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MapsContainerFragment extends Fragment implements OnMapReadyCallback {
     private static final int REQUEST_LOCATION_PERMISSION = 1;
+    @Nullable
     private GoogleMap mMap;
     private Marker pickUpMarker;
     private Marker destinationMarker;
@@ -118,6 +119,7 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
 
 
     public void reset() {
+        if (mMap == null) return;
         mMap.clear();
         pickUpMarker = null;
         destinationMarker = null;
