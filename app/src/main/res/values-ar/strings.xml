@@ -14,6 +14,6 @@
     <string name="go_offline">تسجيل خروج</string>
     <string name="available">متاح</string>
     <string name="going_pickup">فى الطريق لنقطة البداية</string>
-    <string name="going_destination">"فى الطريق اللى الوجهه "</string>
+    <string name="going_destination">"فى الطريق الى الوجهه "</string>
     <string name="login">تسجيل الدخول</string>
 </resources>
