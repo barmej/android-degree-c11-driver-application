@@ -1,4 +1,4 @@
-package com.barmej.driverapllication;
+package com.barmej.driverapllication.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import com.barmej.driverapllication.domain.model.Driver;
-import com.barmej.driverapllication.domain.model.FullStatus;
-import com.barmej.driverapllication.domain.model.Trip;
+import com.barmej.driverapllication.R;
+import com.barmej.driverapllication.callbacks.DriverActionsDeltagates;
+import com.barmej.driverapllication.domain.entities.Driver;
+import com.barmej.driverapllication.domain.entities.FullStatus;
+import com.barmej.driverapllication.domain.entities.Trip;
 
 public class StatusInfoFragment extends Fragment {
     private TextView statusTv;
@@ -54,11 +56,11 @@ public class StatusInfoFragment extends Fragment {
     }
 
 
-    void setDriverActionDelegates(DriverActionsDeltagates delegates) {
+   public void setDriverActionDelegates(DriverActionsDeltagates delegates) {
         this.driverActionsDelegates = delegates;
     }
 
-    void updateWithStatus(FullStatus fullStatus) {
+   public void updateWithStatus(FullStatus fullStatus) {
         String driverStatus = fullStatus.getDriver().getStatus();
         if (driverStatus.equals(Driver.Status.AVAILABLE.name())) {
             statusTv.setText(R.string.available);

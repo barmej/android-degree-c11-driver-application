@@ -1,4 +1,4 @@
-package com.barmej.driverapllication;
+package com.barmej.driverapllication.callbacks;
 
 public interface DriverActionsDeltagates {
     void arrivedToPickup();
