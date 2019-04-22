@@ -1,4 +1,4 @@
-package com.barmej.driverapllication.domain.entities;
+package com.barmej.driverapllication.domain.entity;
 
 import java.io.Serializable;
 

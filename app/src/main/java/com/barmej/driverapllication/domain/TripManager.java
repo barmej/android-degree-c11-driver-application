@@ -3,11 +3,11 @@ package com.barmej.driverapllication.domain;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import com.barmej.driverapllication.callbacks.CallBack;
-import com.barmej.driverapllication.callbacks.StatusCallback;
-import com.barmej.driverapllication.domain.entities.Driver;
-import com.barmej.driverapllication.domain.entities.FullStatus;
-import com.barmej.driverapllication.domain.entities.Trip;
+import com.barmej.driverapllication.callback.CallBack;
+import com.barmej.driverapllication.callback.StatusCallback;
+import com.barmej.driverapllication.domain.entity.Driver;
+import com.barmej.driverapllication.domain.entity.FullStatus;
+import com.barmej.driverapllication.domain.entity.Trip;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;

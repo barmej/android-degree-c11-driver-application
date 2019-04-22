@@ -1,4 +1,4 @@
-package com.barmej.driverapllication.callbacks;
+package com.barmej.driverapllication.callback;
 
 public interface PermissionFailListenr {
     void onPermissionFail();

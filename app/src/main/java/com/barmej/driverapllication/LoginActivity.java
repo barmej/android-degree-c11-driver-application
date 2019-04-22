@@ -1,4 +1,4 @@
-package com.barmej.driverapllication.activities;
+package com.barmej.driverapllication;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.barmej.driverapllication.R;
-import com.barmej.driverapllication.callbacks.CallBack;
+
+import com.barmej.driverapllication.callback.CallBack;
 import com.barmej.driverapllication.domain.TripManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

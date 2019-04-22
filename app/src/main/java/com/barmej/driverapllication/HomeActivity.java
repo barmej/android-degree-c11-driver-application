@@ -1,4 +1,4 @@
-package com.barmej.driverapllication.activities;
+package com.barmej.driverapllication;
 
 import android.Manifest;
 import android.content.Context;
@@ -11,16 +11,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import com.barmej.driverapllication.fragments.MapsContainerFragment;
-import com.barmej.driverapllication.R;
-import com.barmej.driverapllication.fragments.StatusInfoFragment;
-import com.barmej.driverapllication.callbacks.DriverActionsDeltagates;
-import com.barmej.driverapllication.callbacks.PermissionFailListenr;
-import com.barmej.driverapllication.callbacks.StatusCallback;
+import com.barmej.driverapllication.fragment.MapsContainerFragment;
+import com.barmej.driverapllication.fragment.StatusInfoFragment;
+import com.barmej.driverapllication.callback.DriverActionsDeltagates;
+import com.barmej.driverapllication.callback.PermissionFailListenr;
+import com.barmej.driverapllication.callback.StatusCallback;
 import com.barmej.driverapllication.domain.TripManager;
-import com.barmej.driverapllication.domain.entities.Driver;
-import com.barmej.driverapllication.domain.entities.FullStatus;
-import com.barmej.driverapllication.domain.entities.Trip;
+import com.barmej.driverapllication.domain.entity.Driver;
+import com.barmej.driverapllication.domain.entity.FullStatus;
+import com.barmej.driverapllication.domain.entity.Trip;
 import com.google.android.gms.location.*;
 import com.google.android.gms.maps.model.LatLng;
 

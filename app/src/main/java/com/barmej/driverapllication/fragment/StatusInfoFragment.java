@@ -1,4 +1,4 @@
-package com.barmej.driverapllication.fragments;
+package com.barmej.driverapllication.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.barmej.driverapllication.R;
-import com.barmej.driverapllication.callbacks.DriverActionsDeltagates;
-import com.barmej.driverapllication.domain.entities.Driver;
-import com.barmej.driverapllication.domain.entities.FullStatus;
-import com.barmej.driverapllication.domain.entities.Trip;
+import com.barmej.driverapllication.callback.DriverActionsDeltagates;
+import com.barmej.driverapllication.domain.entity.Driver;
+import com.barmej.driverapllication.domain.entity.FullStatus;
+import com.barmej.driverapllication.domain.entity.Trip;
 
 public class StatusInfoFragment extends Fragment {
     private TextView statusTv;

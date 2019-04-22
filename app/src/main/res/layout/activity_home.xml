@@ -6,11 +6,11 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:id="@+id/map_container_fragment"
-              tools:context=".activities.HomeActivity"
-              android:name="com.barmej.driverapllication.fragments.MapsContainerFragment"/>
+              tools:context=".HomeActivity"
+              android:name="com.barmej.driverapllication.fragment.MapsContainerFragment"/>
     <fragment
             android:id="@+id/fragment_status_info"
-            android:name="com.barmej.driverapllication.fragments.StatusInfoFragment"
+            android:name="com.barmej.driverapllication.fragment.StatusInfoFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

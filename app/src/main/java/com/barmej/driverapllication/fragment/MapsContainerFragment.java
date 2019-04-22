@@ -1,4 +1,4 @@
-package com.barmej.driverapllication.fragments;
+package com.barmej.driverapllication.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.barmej.driverapllication.R;
-import com.barmej.driverapllication.callbacks.PermissionFailListenr;
+import com.barmej.driverapllication.callback.PermissionFailListenr;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.*;
