@@ -1,7 +1,7 @@
 package com.barmej.driverapllication.domain;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import com.barmej.driverapllication.callback.CallBack;
 import com.barmej.driverapllication.callback.StatusCallback;

@@ -1,39 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#C5ffffff"
+        android:layout_margin="8dp">
+
+        <TextView
             android:id="@+id/text_view_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:background="@color/colorPrimary"
             android:padding="16dp"
-    />
-    <Button android:id="@+id/button_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:background="@color/colorAccent"
-            android:layout_alignParentBottom="true"
-            android:text="@string/go_offline"
-    />
-    <Button android:id="@+id/button_arrived_pickup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:background="@color/colorPrimary"
-            android:layout_alignParentBottom="true"
-            android:text="@string/arrived_pickup"
-    />
-    <Button android:id="@+id/button_arrived_destination"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:background="@color/colorAccent"
-            android:layout_alignParentBottom="true"
-            android:text="@string/arrived_destination"
-    />
+            android:textStyle="bold"/>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:text="@string/go_offline"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/button_arrived_pickup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="@string/arrived_pickup"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/button_arrived_destination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:text="@string/arrived_destination"
+        android:textColor="@android:color/white" />
 
 
 </RelativeLayout>

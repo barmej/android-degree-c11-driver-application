@@ -3,8 +3,7 @@ package com.barmej.driverapllication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -20,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText passwordEt;
@@ -30,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     public static Intent getStartIntent(Context context) {
         return new Intent(context, LoginActivity.class);
     }
-
 
 
     @Override
@@ -59,7 +59,9 @@ public class LoginActivity extends AppCompatActivity {
             passwordEt.setError(getString(R.string.invalid_password_length));
             return;
         }
-        progressBar.setVisibility(View.VISIBLE);
+
+        hideForm(true);
+
         FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEt.getText().toString(), passwordEt.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -67,14 +69,31 @@ public class LoginActivity extends AppCompatActivity {
                     String driverId = task.getResult().getUser().getUid();
                     fetchDriverProfileAndLogin(driverId);
                 } else {
-                    progressBar.setVisibility(View.GONE);
+
+                    hideForm(false);
+
                     Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
+
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    private void hideForm(boolean hide) {
+        if (hide) {
+            progressBar.setVisibility(View.VISIBLE);
+            passwordEt.setVisibility(View.INVISIBLE);
+            emailEt.setVisibility(View.INVISIBLE);
+            loginBt.setVisibility(View.INVISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            passwordEt.setVisibility(View.VISIBLE);
+            emailEt.setVisibility(View.VISIBLE);
+            loginBt.setVisibility(View.VISIBLE);
+        }
     }
 
     private void fetchDriverProfileAndLogin(String driverId) {
@@ -87,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(HomeActivity.getStartIntent(LoginActivity.this));
                 } else {
                     Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
+                    hideForm(false);
 
                 }
 

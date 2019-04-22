@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import com.barmej.driverapllication.fragment.MapsContainerFragment;
 import com.barmej.driverapllication.fragment.StatusInfoFragment;
 import com.barmej.driverapllication.callback.DriverActionsDeltagates;
@@ -22,6 +20,9 @@ import com.barmej.driverapllication.domain.entity.FullStatus;
 import com.barmej.driverapllication.domain.entity.Trip;
 import com.google.android.gms.location.*;
 import com.google.android.gms.maps.model.LatLng;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private MapsContainerFragment mapsContainerFragment;

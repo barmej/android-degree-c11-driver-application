@@ -6,9 +6,9 @@
     <string name="email">الايميل</string>
     <string name="password">كلمة المرور</string>
     <string name="invalid_email">الايميل غير صالح</string>
-    <string name="invalid_password_length">"كلمة المرور قصيرة "</string>
+    <string name="invalid_password_length">كلمة المرور قصيرة</string>
     <string name="login_error">لم نستطع تسجيل الدخول باستخدام هذا الايميل وكلمة المرور</string>
-    <string name="ok">"حسننا "</string>
+    <string name="ok">حسننا</string>
     <string name="arrived_pickup">وصلت لنقطة البدية</string>
     <string name="arrived_destination">وصلت للوجهه</string>
     <string name="go_offline">تسجيل خروج</string>
@@ -16,4 +16,5 @@
     <string name="going_pickup">فى الطريق لنقطة البداية</string>
     <string name="going_destination">"فى الطريق الى الوجهه "</string>
     <string name="login">تسجيل الدخول</string>
+    <string name="welcome_msg">أهلا بك في تطبيق رحلتي للسائق. أنت شريكنا في النجاح.</string>
 </resources>
