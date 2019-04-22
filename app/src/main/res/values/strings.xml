@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">driverApllication</string>
+    <string name="app_name">My Trip Driver</string>
     <string name="location_permission_needed">Location Permission is needed to set your location</string>
     <string name="title_activity_login">Sign in</string>
     <string name="email">Email</string>
