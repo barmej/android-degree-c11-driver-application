@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,6 +48,11 @@ public class LoginActivity extends AppCompatActivity {
                 loginClicked();
             }
         });
+        FirebaseUser currentFireBaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentFireBaseUser!=null ){
+            hideForm(true);
+            fetchDriverProfileAndLogin(currentFireBaseUser.getUid());
+        }
 
     }
 
@@ -107,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_LONG).show();
                     hideForm(false);
-
                 }
 
             }

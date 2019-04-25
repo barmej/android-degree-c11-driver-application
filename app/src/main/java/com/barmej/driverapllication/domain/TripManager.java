@@ -10,6 +10,7 @@ import com.barmej.driverapllication.domain.entity.FullStatus;
 import com.barmej.driverapllication.domain.entity.Trip;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -167,5 +168,6 @@ public class TripManager {
         driver.setStatus(Driver.Status.OFFLINE.name());
         driver.setAssignedTrip(null);
         database.getReference(DRIVER_REF_PATH).child(driver.getId()).setValue(driver);
+        FirebaseAuth.getInstance().signOut();
     }
 }
