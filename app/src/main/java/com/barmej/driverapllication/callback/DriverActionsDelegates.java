@@ -1,6 +1,6 @@
 package com.barmej.driverapllication.callback;
 
-public interface DriverActionsDeltagates {
+public interface DriverActionsDelegates {
     void arrivedToPickup();
 
     void arrivedToDestination();

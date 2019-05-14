@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import com.barmej.driverapllication.fragment.MapsContainerFragment;
 import com.barmej.driverapllication.fragment.StatusInfoFragment;
-import com.barmej.driverapllication.callback.DriverActionsDeltagates;
+import com.barmej.driverapllication.callback.DriverActionsDelegates;
 import com.barmej.driverapllication.callback.PermissionFailListener;
 import com.barmej.driverapllication.callback.StatusCallback;
 import com.barmej.driverapllication.domain.TripManager;
@@ -29,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     private PermissionFailListener permissionFailListener = getPermissionFailListener();
     private LocationCallback locationCallback;
     private FusedLocationProviderClient locationClient;
-    private DriverActionsDeltagates driverActionsDeltagates = getDriverActionDelegates();
+    private DriverActionsDelegates driverActionsDelegates = getDriverActionDelegates();
     private StatusInfoFragment statusInfoFragment;
     private StatusCallback statusListener = getStatusListener();
 
@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         mapsContainerFragment = (MapsContainerFragment) getSupportFragmentManager().findFragmentById(R.id.map_container_fragment);
         mapsContainerFragment.setPermissionFailListener(permissionFailListener);
         statusInfoFragment = (StatusInfoFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_status_info);
-        statusInfoFragment.setDriverActionDelegates(driverActionsDeltagates);
+        statusInfoFragment.setDriverActionDelegates(driverActionsDelegates);
 
     }
 
@@ -65,8 +65,8 @@ public class HomeActivity extends AppCompatActivity {
         };
     }
 
-    private DriverActionsDeltagates getDriverActionDelegates() {
-        return new DriverActionsDeltagates() {
+    private DriverActionsDelegates getDriverActionDelegates() {
+        return new DriverActionsDelegates() {
             @Override
             public void arrivedToPickup() {
                 TripManager.getInstance().updateTripToArrivedToPickUp();

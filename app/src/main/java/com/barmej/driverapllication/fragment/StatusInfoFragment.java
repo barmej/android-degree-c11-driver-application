@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.barmej.driverapllication.R;
-import com.barmej.driverapllication.callback.DriverActionsDeltagates;
+import com.barmej.driverapllication.callback.DriverActionsDelegates;
 import com.barmej.driverapllication.domain.entity.Driver;
 import com.barmej.driverapllication.domain.entity.FullStatus;
 import com.barmej.driverapllication.domain.entity.Trip;
@@ -21,7 +21,7 @@ public class StatusInfoFragment extends Fragment {
     private Button arrivedToPickUpBt;
     private Button arrivedToDestinationBt;
     private Button logOutBt;
-    private DriverActionsDeltagates driverActionsDelegates;
+    private DriverActionsDelegates driverActionsDelegates;
 
     @Nullable
     @Override
@@ -57,7 +57,7 @@ public class StatusInfoFragment extends Fragment {
     }
 
 
-   public void setDriverActionDelegates(DriverActionsDeltagates delegates) {
+   public void setDriverActionDelegates(DriverActionsDelegates delegates) {
         this.driverActionsDelegates = delegates;
     }
 
