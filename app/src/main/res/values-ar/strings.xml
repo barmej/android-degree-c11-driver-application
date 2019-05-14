@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">رحلتي للسائق</string>
     <string name="location_permission_needed">صلاحية قراءة الموقع مطلوبة لعرض موقعك على الخرائط</string>
-    <string name="title_activity_login">سجل دخول</string>
     <string name="email">الايميل</string>
     <string name="password">كلمة المرور</string>
     <string name="invalid_email">الايميل غير صالح</string>
