@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.barmej.driverapllication.R;
-import com.barmej.driverapllication.callback.PermissionFailListenr;
+import com.barmej.driverapllication.callback.PermissionFailListener;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
@@ -32,7 +32,7 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
     private GoogleMap mMap;
     private Marker pickUpMarker;
     private Marker destinationMarker;
-    private PermissionFailListenr permissionFailListenr;
+    private PermissionFailListener permissionFailListener;
 
     @Nullable
     @Override
@@ -88,8 +88,8 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
             if (permissions.length == 1 & grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 setupUserLocation();
             } else {
-                if (permissionFailListenr != null) {
-                    permissionFailListenr.onPermissionFail();
+                if (permissionFailListener != null) {
+                    permissionFailListener.onPermissionFail();
                 }
             }
         } else {
@@ -133,8 +133,8 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
         destinationMarker = null;
     }
 
-    public void setPermissionFailListenr(PermissionFailListenr permissionFailListenr) {
-        this.permissionFailListenr = permissionFailListenr;
+    public void setPermissionFailListener(PermissionFailListener permissionFailListener) {
+        this.permissionFailListener = permissionFailListener;
     }
 
 }

@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 import com.barmej.driverapllication.fragment.MapsContainerFragment;
 import com.barmej.driverapllication.fragment.StatusInfoFragment;
 import com.barmej.driverapllication.callback.DriverActionsDeltagates;
-import com.barmej.driverapllication.callback.PermissionFailListenr;
+import com.barmej.driverapllication.callback.PermissionFailListener;
 import com.barmej.driverapllication.callback.StatusCallback;
 import com.barmej.driverapllication.domain.TripManager;
 import com.barmej.driverapllication.domain.entity.Driver;
@@ -26,7 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
     private MapsContainerFragment mapsContainerFragment;
-    private PermissionFailListenr permissionFailListenr = getPermissionFailListener();
+    private PermissionFailListener permissionFailListener = getPermissionFailListener();
     private LocationCallback locationCallback;
     private FusedLocationProviderClient locationClient;
     private DriverActionsDeltagates driverActionsDeltagates = getDriverActionDelegates();
@@ -42,15 +42,15 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mapsContainerFragment = (MapsContainerFragment) getSupportFragmentManager().findFragmentById(R.id.map_container_fragment);
-        mapsContainerFragment.setPermissionFailListenr(permissionFailListenr);
+        mapsContainerFragment.setPermissionFailListener(permissionFailListener);
         statusInfoFragment = (StatusInfoFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_status_info);
         statusInfoFragment.setDriverActionDelegates(driverActionsDeltagates);
 
     }
 
-    private PermissionFailListenr getPermissionFailListener() {
+    private PermissionFailListener getPermissionFailListener() {
 
-        return new PermissionFailListenr() {
+        return new PermissionFailListener() {
             @Override
             public void onPermissionFail() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
