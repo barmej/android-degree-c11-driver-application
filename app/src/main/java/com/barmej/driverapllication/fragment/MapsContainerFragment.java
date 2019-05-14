@@ -67,6 +67,7 @@ public class MapsContainerFragment extends Fragment implements OnMapReadyCallbac
 
     @SuppressLint("MissingPermission")
     private void setupUserLocation() {
+        if (mMap == null) return;
         mMap.setMyLocationEnabled(true);
         FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         locationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
