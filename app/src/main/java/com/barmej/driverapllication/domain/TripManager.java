@@ -21,7 +21,7 @@ public class TripManager {
     private static final String TRIP_REF_PATH = "trips";
     private static final String DRIVER_REF_PATH = "drivers";
 
-    private static TripManager INSTANCE;
+    private static TripManager instance;
     private FirebaseDatabase database;
 
 
@@ -38,10 +38,10 @@ public class TripManager {
 
 
     public static TripManager getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new TripManager();
+        if (instance == null) {
+            instance = new TripManager();
         }
-        return INSTANCE;
+        return instance;
     }
 
 
